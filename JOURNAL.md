@@ -6,7 +6,7 @@
   ==================================================================
 -->
 
-## 10/28/2025 - thought out the main features  
+## 10/28/2025 7 PM - thought out the main features  
 
 ![explosivecat](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NjE5NiwicHVyIjoiYmxvYl9pZCJ9fQ==--b62d2de114c81411ba98933ecdbaabfbb3683907/explosivecat.png)
 currently consists of these features:
@@ -23,4 +23,16 @@ currently consists of these features:
 - 6 button interface (Directions, Ok, Back)
  
   
+
+## 10/28/2025 9 PM - choosing the parts and making the BOM  
+
+I've been choosing the parts for my pager, so the basics:
+
+Computer: Raspberry Pi Zero 2 W
+LoRA Module: EBYTE E220-900T22D 
+Wifi Gateway: ESP32 Mini
+GPS Module: NEO-6M![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NjIzMiwicHVyIjoiYmxvYl9pZCJ9fQ==--46997878686686d531209794d0298d63214a1af5/image.png)
+
+
+anyways, i'll work more on this later!!!!  
 
