@@ -11,25 +11,25 @@
 ![explosivecat](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NjE5NiwicHVyIjoiYmxvYl9pZCJ9fQ==--b62d2de114c81411ba98933ecdbaabfbb3683907/explosivecat.png)
 currently consists of these features:
 
-- SIM Card Interface to allow for calling to non-pager devices and messaging (MAY BE REMOVED)
+SIM Card Interface to allow for calling to non-pager devices and messaging (MAY BE REMOVED)
 
-- Rescue mode, automatically sends your location to your emergency contacts, and calls 911 and sends an alert to all ems pager devices within 15km pointing to your location.
+Rescue mode, automatically sends your location to your emergency contacts, and calls 911 and sends an alert to all ems pager devices within 15km pointing to your location.
  
-- Games, you can program games into your pager or play the builtin ones (simple shooter, tic tac toe, and more)
+Games, you can program games into your pager or play the builtin ones (simple shooter, tic tac toe, and more)
  
-- AI chatbot, because why not stuff AI into everything. (Gemini since it's free)
+AI chatbot, because why not stuff AI into everything. (Gemini since it's free)
  
-- Search Engine, because we stuffed AI into everything and now nothing works
+Search Engine, because we stuffed AI into everything and now nothing works
  
-- Morse code typing, and virtual keyboard typing
+Morse code typing, and virtual keyboard typing
  
-- LoRA based network, to allow for communication without sim card to nearby pagers to increase range, network hopping is enabled
+LoRA based network, to allow for communication without sim card to nearby pagers to increase range, network hopping is enabled
 
-- Encryption, well because network hopping is enabled, to prevent eavesdropping
+Encryption, well because network hopping is enabled, to prevent eavesdropping
  
-- Modules, (Keyboard Module, Joystick Module for games and more)
+Modules, (Keyboard Module, Joystick Module for games and more)
  
-- 6 button interface (Directions, Ok, Back)
+6 button interface (Directions, Ok, Back)
  
   
 
