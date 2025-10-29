@@ -36,3 +36,17 @@ GPS Module: NEO-6M![image](https://blueprint.hackclub.com/user-attachments/blobs
 
 anyways, i'll work more on this later!!!!  
 
+## 10/29/2025 - still choosing the parts and ALOT of research  
+
+uh so turns out i'm stupid, raspberry pi zero 2 w already handles wifi so no wifi gateway needed.
+I now have everything I need
+
+and we have a sim card module (sim800l) I wasn't planning on this since 2g is barely supported but 
+turns out I can use 4/5g sims and my carrier will fallback to a 2g network.
+
+we also have an accelerometer/gyro, and compass
+
+and buck converters, this is getting a little expensive![pager](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NjQ5OSwicHVyIjoiYmxvYl9pZCJ9fQ==--36d422a4c051ff42a39defdddf16dc0b4eecd184/pager.png)
+
+  
+
