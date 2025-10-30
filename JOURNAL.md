@@ -50,3 +50,14 @@ and buck converters, this is getting a little expensive![pager](https://blueprin
 
   
 
+## 10/30/2025 - finalized most parts, now onto UI and software side  
+
+I've finalized most parts, though there may be some additions/removals, I've uploaded the csv for everyone.
+
+After the UI and apps are done, I'll make the schematics and pcb, though I'm not sure whether I should use a pcb or wires, since most of the components are pcbs as well.
+
+I'm keeping in mind security, by encrypting all LoRA network messages with algorithms _simillar_ to
+the Diffie-Hoffmann key exchange, as it's itself too resource-intensive for a Raspberry Pi Zero 2 W
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6Njc0NiwicHVyIjoiYmxvYl9pZCJ9fQ==--9e2cbd1459264cf840ba28743626d3ec2470d17d/image.png)
+  
+
