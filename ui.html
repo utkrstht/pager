@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=320, height=240, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pager UI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 320px;
+            height: 240px;
+            max-width: 320px;
+            max-height: 240px;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #121212;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        #idle-screen {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        #idle-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 0;
+        }
+        
+        #idle-screen > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        #idle-screen.hidden {
+            display: none;
+        }
+
+        .pager-label {
+            position: absolute;
+            top: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+
+        .idle-time {
+            font-size: 56px;
+            font-weight: 300;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            color: #fff;
+        }
+
+        .idle-date {
+            font-size: 13px;
+            color: #fff;
+            font-weight: 400;
+        }
+
+        #menu-screen {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            background: #0a0a0a;
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        #menu-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
+        }
+        
+        #menu-screen > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        #menu-screen.active {
+            display: flex;
+        }
+
+        .status-bar {
+            height: 20px;
+            background: rgba(28, 28, 30, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 6px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .status-datetime {
+            font-size: 9px;
+            color: #999;
+            font-weight: 500;
+        }
+
+        .status-icons {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .signal-group {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .signal-label {
+            font-size: 8px;
+            color: #888;
+            margin-right: 1px;
+        }
+
+        .signal-bars {
+            display: flex;
+            gap: 1.5px;
+            align-items: flex-end;
+            height: 9px;
+        }
+
+        .signal-bar {
+            width: 2px;
+            background: #444;
+            border-radius: 1px;
+        }
+
+        .signal-bar.active {
+            background: #007AFF;
+        }
+
+        .battery {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .battery-icon {
+            width: 16px;
+            height: 8px;
+            border: 1.5px solid #ddd;
+            border-radius: 2px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 1.5px;
+        }
+
+        .battery-icon::after {
+            content: '';
+            position: absolute;
+            right: -3px;
+            top: 1.5px;
+            width: 2px;
+            height: 3px;
+            background: #ddd;
+            border-radius: 0 1px 1px 0;
+        }
+
+        .battery-fill {
+            height: 100%;
+            background: #4CD964;
+            border-radius: 1px;
+            transition: width 0.3s, background 0.3s;
+        }
+
+        .battery-fill.low {
+            background: #FF3B30;
+        }
+
+        .battery-fill.medium {
+            background: #FFCC00;
+        }
+
+        .battery-percent {
+            font-size: 8px;
+            color: #999;
+        }
+
+        .menu-content {
+            flex: 1;
+            display: flex;
+            padding: 6px;
+            gap: 6px;
+            overflow: hidden;
+        }
+
+        .penguin-area {
+            width: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-bottom: 4px;
+            position: relative;
+            gap: 10px;
+            padding-top: 10px;
+        }
+        
+        .vertical-clock {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #FFF; 
+            text-shadow: 0 0 5px rgba(0, 175, 255, 0.5);
+            font-weight: 200;
+        }
+
+        .vertical-time-hour {
+            font-size: 26px;
+            line-height: 1;
+        }
+
+        .vertical-time-minute {
+            font-size: 26px;
+            line-height: 1;
+        }
+        
+        .penguin-container {
+            position: relative;
+            width: 42px;
+            height: 50px;
+        }
+
+        .penguin-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .light {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #007AFF;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #007AFF;
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .light:nth-child(2) { animation-delay: 0s; }
+        .light:nth-child(3) { animation-delay: 0.25s; }
+        .light:nth-child(4) { animation-delay: 0.5s; }
+        .light:nth-child(5) { animation-delay: 0.75s; }
+        .light:nth-child(6) { animation-delay: 1s; }
+        .light:nth-child(7) { animation-delay: 1.25s; }
+        .light:nth-child(8) { animation-delay: 1.5s; }
+        .light:nth-child(9) { animation-delay: 1.75s; }
+
+        /* App Grid */
+        .app-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            padding: 4px;
+            align-content: start;
+            overflow-y: auto;
+        }
+
+        .app-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .app-icon:active {
+            transform: scale(0.95);
+        }
+
+        .app-icon-bg {
+            width: 46px;
+            height: 46px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-icon-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.2), transparent);
+        }
+
+        .app-icon-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .app-name {
+            font-size: 8px;
+            color: #ccc;
+            text-align: center;
+            max-width: 50px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div id="idle-screen">
+        <div class="pager-label">PAGER</div>
+        <div class="idle-time" id="idle-time">00:00</div>
+        <div class="idle-date" id="idle-date">Monday, January 1</div>
+    </div>
+
+    <div id="menu-screen">
+        <div class="status-bar">
+            <div class="status-datetime" id="status-datetime">Mon 01 00:00</div>
+            <div class="status-icons">
+                <div class="signal-group">
+                    <span class="signal-label">S</span>
+                    <div class="signal-bars" id="sim-signal">
+                        <div class="signal-bar" style="height: 2px;"></div>
+                        <div class="signal-bar" style="height: 4px;"></div>
+                        <div class="signal-bar" style="height: 6px;"></div>
+                        <div class="signal-bar" style="height: 8px;"></div>
+                        <div class="signal-bar" style="height: 9px;"></div>
+                    </div>
+                </div>
+                <div class="signal-group">
+                    <span class="signal-label">L</span>
+                    <div class="signal-bars" id="lora-signal">
+                        <div class="signal-bar" style="height: 2px;"></div>
+                        <div class="signal-bar" style="height: 4px;"></div>
+                        <div class="signal-bar" style="height: 6px;"></div>
+                        <div class="signal-bar" style="height: 8px;"></div>
+                        <div class="signal-bar" style="height: 9px;"></div>
+                    </div>
+                </div>
+                <div class="signal-group">
+                    <span class="signal-label">G</span>
+                    <div class="signal-bars" id="gps-signal">
+                        <div class="signal-bar" style="height: 2px;"></div>
+                        <div class="signal-bar" style="height: 4px;"></div>
+                        <div class="signal-bar" style="height: 6px;"></div>
+                        <div class="signal-bar" style="height: 8px;"></div>
+                        <div class="signal-bar" style="height: 9px;"></div>
+                    </div>
+                </div>
+                <div class="battery">
+                    <div class="battery-icon">
+                        <div class="battery-fill" id="battery-fill" style="width: 78%;"></div>
+                    </div>
+                    <span class="battery-percent" id="battery-percent">78%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-content">
+            <div class="penguin-area">
+                <div class="vertical-clock">
+                    <div class="vertical-time-hour" id="menu-time-hour">00</div>
+                    <div class="vertical-time-minute" id="menu-time-minute">00</div>
+                </div>
+                
+                <div class="penguin-container">
+                    <img src="penguin.png" alt="Penguin" class="penguin-img">
+                    <div class="light" style="top: -8px; left: 21px;"></div>
+                    <div class="light" style="top: 2px; left: 48px;"></div>
+                    <div class="light" style="top: 25px; left: 54px;"></div>
+                    <div class="light" style="top: 44px; left: 42px;"></div>
+                    <div class="light" style="top: 54px; left: 21px;"></div>
+                    <div class="light" style="top: 44px; left: 0px;"></div>
+                    <div class="light" style="top: 25px; left: -6px;"></div>
+                    <div class="light" style="top: 2px; left: 0px;"></div>
+                </div>
+            </div>
+
+            <div class="app-grid">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        const apps = [
+            { name: 'Messages', color: '#4CD964', icon: 'https://play-lh.googleusercontent.com/9AZOTXU_CpreTFAXUPAmJNkm8VGCb1C90fjJ9pHGcVmpGMDSTq3cUbaQJdBT9Tdp9A' },
+            { name: 'Phone', color: '#65f07c', icon: 'https://cdn.iconscout.com/icon/free/png-256/free-apple-phone-icon-svg-download-png-493154.png?f=webp' },
+            { name: 'Settings', color: '#E1D9D1', icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSSgfGEQgG1EQFuAUwr84dhPS_3FnXqMnL1g&s' },
+            { name: 'Midori', color: '#FF9500', icon: 'https://img.utdstc.com/icon/ec0/e38/ec0e38a5680bda781cd3d05f084a6d7f5c9f29524d20a42c9ec501f300dd7b13:200' },
+            { name: 'Notes', color: '#FFCC00', icon: 'https://files.softicons.com/download/system-icons/open-phone-icons-by-walrick/png/256/Notes.png' },
+            { name: 'Youtube', color: '#FFFFFF', icon: 'https://www.gbv.ie/wp-content/uploads/2024/09/youtube-clipart-youtube-square-icons-1600x1600-1-1024x1024.png' },
+            { name: 'DonDonPachi', color: '#007AFF', icon: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ef02abe3-63cc-4dfa-8eab-5543cf3bcf4f/d75rvbj-f71ca7da-843e-4928-86fd-22cfbe9b2357.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi9lZjAyYWJlMy02M2NjLTRkZmEtOGVhYi01NTQzY2YzYmNmNGYvZDc1cnZiai1mNzFjYTdkYS04NDNlLTQ5MjgtODZmZC0yMmNmYmU5YjIzNTcucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.gsGYJ_7IexrTYeHVM7Zoer-L9T2g4t_K0FmKttvsDMY' }
+        ];
+
+        let systemStatus = {
+            simSignal: 4,
+            loraSignal: 3,
+            gpsSignal: 2,
+            battery: 78
+        };
+
+        function updateTime() {
+            const now = new Date();
+            
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            
+            document.getElementById('idle-time').textContent = `${hours}:${minutes}`;
+            
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                            'July', 'August', 'September', 'October', 'November', 'December'];
+            const dateStr = `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
+            document.getElementById('idle-date').textContent = dateStr;
+            
+            const shortDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const statusStr = `${shortDays[now.getDay()]} ${String(now.getDate()).padStart(2, '0')} ${hours}:${minutes}`;
+            document.getElementById('status-datetime').textContent = statusStr;
+
+            document.getElementById('menu-time-hour').textContent = hours;
+            document.getElementById('menu-time-minute').textContent = minutes;
+        }
+
+        function updateSignals() {
+            ['sim', 'lora', 'gps'].forEach(type => {
+                const strength = systemStatus[`${type}Signal`];
+                const bars = document.querySelectorAll(`#${type}-signal .signal-bar`);
+                bars.forEach((bar, index) => {
+                    if (index < strength) {
+                        bar.classList.add('active');
+                    } else {
+                        bar.classList.remove('active');
+                    }
+                });
+            });
+        }
+
+        function updateBattery() {
+            const battery = systemStatus.battery;
+            const fill = document.getElementById('battery-fill');
+            const percent = document.getElementById('battery-percent');
+            
+            fill.style.width = `${battery}%`;
+            percent.textContent = `${battery}%`;
+            
+            fill.classList.remove('low', 'medium');
+            if (battery <= 10) {
+                fill.classList.add('low');
+            } else if (battery <= 20) {
+                fill.classList.add('medium');
+            }
+        }
+
+        const idleScreen = document.getElementById('idle-screen');
+        const menuScreen = document.getElementById('menu-screen');
+
+        idleScreen.addEventListener('click', () => {
+            idleScreen.classList.add('hidden');
+            menuScreen.classList.add('active');
+        });
+
+        function launchApp(appName) {
+            console.log(`Launching ${appName}...`);
+            alert(`Launching ${appName}`);
+        }
+        
+        function generateAppGrid() {
+            const appGrid = document.querySelector('.app-grid');
+            appGrid.innerHTML = '';
+            
+            apps.forEach(app => {
+                const appIcon = document.createElement('div');
+                appIcon.className = 'app-icon';
+                appIcon.onclick = () => launchApp(app.name);
+                
+                appIcon.innerHTML = `
+                    <div class="app-icon-bg" style="background: ${app.color};">
+                        <img src="${app.icon}" alt="${app.name}" onerror="this.style.display='none'">
+                    </div>
+                    <div class="app-name">${app.name}</div>
+                `;
+                
+                appGrid.appendChild(appIcon);
+            });
+        }
+
+        function simulateSystemUpdates() {
+            systemStatus.simSignal = Math.max(0, Math.min(5, systemStatus.simSignal + (Math.random() > 0.5 ? 1 : -1)));
+            systemStatus.loraSignal = Math.max(0, Math.min(5, systemStatus.loraSignal + (Math.random() > 0.5 ? 1 : -1)));
+            systemStatus.gpsSignal = Math.max(0, Math.min(5, systemStatus.gpsSignal + (Math.random() > 0.5 ? 1 : -1)));
+            
+            if (Math.random() > 0.9) {
+                systemStatus.battery = Math.max(0, systemStatus.battery - 1);
+            }
+            
+            updateSignals();
+            updateBattery();
+        }
+
+        generateAppGrid();
+        updateTime();
+        updateSignals();
+        updateBattery();
+
+        setInterval(updateTime, 1000);
+        setInterval(simulateSystemUpdates, 5000);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && menuScreen.classList.contains('active')) {
+                menuScreen.classList.remove('active');
+                idleScreen.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
