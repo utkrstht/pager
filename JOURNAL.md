@@ -61,3 +61,19 @@ the Diffie-Hoffmann key exchange, as it's itself too resource-intensive for a Ra
 ![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6Njc0NiwicHVyIjoiYmxvYl9pZCJ9fQ==--9e2cbd1459264cf840ba28743626d3ec2470d17d/image.png)
   
 
+## 11/2/2025 - Making the UI  
+
+So the parts have been finalized, Now onto the UI and PCB.
+
+I've made the first version of the UI, it does look like some 2000's era phone UI but whatever
+
+I've also started work on making a schematic for the pcb, I don't know 3d modelling 
+(the banner model was made by a friend, but it's only for display)
+So I'll have to learn that and making a pcb both together, very fun.
+
+I did forget to post a journal entry so yeah.
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6Nzc1OSwicHVyIjoiYmxvYl9pZCJ9fQ==--21e4dcb61f2904b7d17ebc153f7da81b5a52d3c3/image.png)
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6Nzc2MywicHVyIjoiYmxvYl9pZCJ9fQ==--a99ec609b7d3696007bf8d2db0cdf8c10796a6c1/image.png)
+
+  
+
