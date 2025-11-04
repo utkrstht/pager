@@ -77,3 +77,15 @@ I did forget to post a journal entry so yeah.
 
   
 
+## 11/4/2025 - Wrote the README  
+
+I wrote a detailed readme for the project, though it's not complete.
+
+I've also decided to use a proper PCB, so I'm making that as well, 
+Currently learning how to make custom symbols and footprints! 
+
+I wrote the readme in half an hour and it's been half an hour since I've sat to learn and research.
+
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ODI4NCwicHVyIjoiYmxvYl9pZCJ9fQ==--972bdfc12ee73614431be2204961714da13b885c/image.png)
+  
+
