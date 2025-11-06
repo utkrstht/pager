@@ -89,3 +89,16 @@ I wrote the readme in half an hour and it's been half an hour since I've sat to 
 ![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ODI4NCwicHVyIjoiYmxvYl9pZCJ9fQ==--972bdfc12ee73614431be2204961714da13b885c/image.png)
   
 
+## 11/6/2025 - Creating the symbols and routing the PCB  
+
+I've watched some KiCad tutorials, and sadly alot of the modules, have absolutely no info about them, except the bare chips.
+
+So, making a pcb is extremely hard since I have no knowledge required about the modules to make the footprints, so I'm thinking of not making a PCB.
+
+I've made alot of the symbols, and I wasn't able to work yesterday since I got the cold,
+By tomorrow, I'll finish the symbols for everything, and properly route the entire PCB
+
+
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ODg4OSwicHVyIjoiYmxvYl9pZCJ9fQ==--822982fd5781636a894f30cb5243714e6396dfc8/image.png)
+  
+
