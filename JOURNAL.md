@@ -102,3 +102,12 @@ By tomorrow, I'll finish the symbols for everything, and properly route the enti
 ![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6ODg4OSwicHVyIjoiYmxvYl9pZCJ9fQ==--822982fd5781636a894f30cb5243714e6396dfc8/image.png)
   
 
+## 11/7/2025 - Routing the PCB  
+
+I've made all the symbols and I'm starting the routing process.
+I really don't have much else to say so yeah.
+
+I've updated the bom and I'm quite happy with how this is lookin
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTE4MywicHVyIjoiYmxvYl9pZCJ9fQ==--7e27fc91d32470b4ad6ce4b99dd83ab46bd63d8b/image.png)
+  
+
