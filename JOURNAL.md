@@ -111,3 +111,16 @@ I've updated the bom and I'm quite happy with how this is lookin
 ![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTE4MywicHVyIjoiYmxvYl9pZCJ9fQ==--7e27fc91d32470b4ad6ce4b99dd83ab46bd63d8b/image.png)
   
 
+## 11/10/2025 - Routed the PCB.  
+
+Well, finally after like 3 days, I've finished the routing, turns out I made alot of wrong assumptions.
+
+Anyways this is a major part of the project done, and now only the case and firmware remain!!
+I haven't added the buttons, since I only have 4 GPIOs and 6 buttons to add, I'm considering 
+using Charlieplexing for it.
+
+This is basically speghetti
+
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MTAwMDYsInB1ciI6ImJsb2JfaWQifX0=--f40f9d712671341329927fface35bcada9761030/image.png)
+  
+
