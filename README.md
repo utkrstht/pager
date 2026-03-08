@@ -1,10 +1,10 @@
 # pager
 pager is a modern handheld communication device  
 
-![pager](https://camo.githubusercontent.com/9c1123da9635dfe1aa862388aa7062fd270faeade4eb038e138956ba8e45f1a4/68747470733a2f2f626c75657072696e742e6861636b636c75622e636f6d2f757365722d6174746163686d656e74732f626c6f62732f70726f78792f65794a66636d467062484d694f6e73695a474630595349364e6a51354f53776963485679496a6f69596d7876596c39705a434a3966513d3d2d2d333664343232613463303531666634326133396465666464646631366463306234656563643138342f70616765722e706e67)
+![pager](demo/pager.png)
 
 ### why
-I wanted to build an all in one handheld communication device, I built a very early prototype with infrared morse code communication (see below)  
+I wanted to build an all in one handheld communication device, I built a very early prototype (kanata-05/infrared) with infrared morse code communication (see below)  
 
 It worked out! but the range was only 3-4 inches at best  
 So I'm now making pager, quite a HUGE leap.  
